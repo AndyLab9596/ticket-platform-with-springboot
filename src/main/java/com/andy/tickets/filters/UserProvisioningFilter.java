@@ -1,6 +1,6 @@
 package com.andy.tickets.filters;
 
-import com.andy.tickets.domain.User;
+import com.andy.tickets.domain.entities.User;
 import com.andy.tickets.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

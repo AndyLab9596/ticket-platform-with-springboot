@@ -1,5 +1,6 @@
-package com.andy.tickets.domain;
+package com.andy.tickets.domain.entities;
 
+import com.andy.tickets.domain.enums.TicketStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

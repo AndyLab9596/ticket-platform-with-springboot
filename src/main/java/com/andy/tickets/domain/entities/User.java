@@ -1,4 +1,4 @@
-package com.andy.tickets.domain;
+package com.andy.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

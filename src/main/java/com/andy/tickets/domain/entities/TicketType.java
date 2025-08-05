@@ -1,4 +1,4 @@
-package com.andy.tickets.domain;
+package com.andy.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,6 +30,9 @@ public class TicketType {
     @Column(name = "price", nullable = false)
     private Double price;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "total_available", nullable = true)
     private Integer totalAvailable;
 
@@ -53,11 +56,11 @@ public class TicketType {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TicketType that = (TicketType) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) && Objects.equals(getPrice(), that.getPrice()) && Objects.equals(getTotalAvailable(), that.getTotalAvailable()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && Objects.equals(getUpdatedAt(), that.getUpdatedAt());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) && Objects.equals(getPrice(), that.getPrice()) && Objects.equals(getDescription(), that.getDescription()) && Objects.equals(getTotalAvailable(), that.getTotalAvailable()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && Objects.equals(getUpdatedAt(), that.getUpdatedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getPrice(), getTotalAvailable(), getCreatedAt(), getUpdatedAt());
+        return Objects.hash(getId(), getName(), getPrice(), getDescription(), getTotalAvailable(), getCreatedAt(), getUpdatedAt());
     }
 }

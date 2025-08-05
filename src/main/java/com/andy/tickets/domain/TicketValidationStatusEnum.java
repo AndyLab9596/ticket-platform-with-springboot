@@ -1,5 +1,5 @@
 package com.andy.tickets.domain;
 
-public enum TicketValidationEnum {
+public enum TicketValidationStatusEnum {
     VALID, INVALID, EXPIRED
 }

@@ -2,6 +2,7 @@ package com.andy.tickets.services;
 
 import com.andy.tickets.domain.entities.Event;
 import com.andy.tickets.domain.requests.CreateEventRequest;
+import com.andy.tickets.domain.requests.UpdateEventRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,4 +13,5 @@ public interface EventService {
     Event createEvent(UUID organizerId, CreateEventRequest event);
     Page<Event> listEventForOrganizer(UUID organizerId, Pageable pageable);
     Optional<Event> getEventForOrganizer(UUID organizerId, UUID id);
+    Event updateEventForOrganizer(UUID organizerId, UUID id, UpdateEventRequest event);
 }

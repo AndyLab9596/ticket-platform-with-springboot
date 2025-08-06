@@ -2,6 +2,7 @@ package com.andy.tickets.controllers;
 
 import com.andy.tickets.domain.dtos.CreateEventRequestDto;
 import com.andy.tickets.domain.dtos.CreateEventResponseDto;
+import com.andy.tickets.domain.dtos.GetEventDetailsResponseDto;
 import com.andy.tickets.domain.dtos.ListEventResponseDto;
 import com.andy.tickets.domain.entities.Event;
 import com.andy.tickets.domain.requests.CreateEventRequest;
@@ -48,7 +49,17 @@ public class EventController {
         return ResponseEntity.ok(events.map(eventMapper::toListEventResponseDto));
     }
 
+    @GetMapping(path = "/{eventId}")
+    public ResponseEntity<GetEventDetailsResponseDto> getEvent(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID eventId) {
+        UUID userId = parseUserId(jwt);
+        return eventService.getEventForOrganizer(userId, eventId)
+                .map(eventMapper::toGetEventDetailsResponseDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     private UUID parseUserId(Jwt jwt) {
         return UUID.fromString(jwt.getSubject());
     }
+
 }

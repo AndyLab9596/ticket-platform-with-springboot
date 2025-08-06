@@ -5,6 +5,8 @@ import com.andy.tickets.domain.entities.Event;
 import com.andy.tickets.domain.entities.TicketType;
 import com.andy.tickets.domain.requests.CreateEventRequest;
 import com.andy.tickets.domain.requests.CreateTicketTypeRequest;
+import com.andy.tickets.domain.requests.UpdateEventRequest;
+import com.andy.tickets.domain.requests.UpdateTicketTypeRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -24,4 +26,11 @@ public interface EventMapper {
 
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
 
+    UpdateTicketTypeRequest fromUpdateTicketTypeRequestDto(UpdateTicketTypeRequestDto updateTicketTypeRequestDto);
+
+    UpdateEventRequest fromUpdateEventRequestDto(UpdateEventRequestDto updateEventRequestDto);
+
+    UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
+
+    UpdateEventResponseDto toUpdateEventResponseDto(Event event);
 }

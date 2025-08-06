@@ -1,9 +1,8 @@
 package com.andy.tickets.mappers;
 
-import com.andy.tickets.domain.dtos.CreateEventRequestDto;
-import com.andy.tickets.domain.dtos.CreateEventResponseDto;
-import com.andy.tickets.domain.dtos.CreateTicketTypeRequestDto;
+import com.andy.tickets.domain.dtos.*;
 import com.andy.tickets.domain.entities.Event;
+import com.andy.tickets.domain.entities.TicketType;
 import com.andy.tickets.domain.requests.CreateEventRequest;
 import com.andy.tickets.domain.requests.CreateTicketTypeRequest;
 import org.mapstruct.Mapper;
@@ -16,4 +15,9 @@ public interface EventMapper {
     CreateEventRequest fromDto(CreateEventRequestDto dto);
 
     CreateEventResponseDto toDto(Event event);
+
+    ListEventTicketTypeResponseDto toDto(TicketType ticketType);
+
+    ListEventResponseDto toListEventResponseDto(Event event);
+
 }

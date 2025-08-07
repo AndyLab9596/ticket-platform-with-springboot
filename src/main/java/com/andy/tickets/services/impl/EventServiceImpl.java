@@ -3,6 +3,7 @@ package com.andy.tickets.services.impl;
 import com.andy.tickets.domain.entities.Event;
 import com.andy.tickets.domain.entities.TicketType;
 import com.andy.tickets.domain.entities.User;
+import com.andy.tickets.domain.enums.EventStatusEnum;
 import com.andy.tickets.domain.requests.CreateEventRequest;
 import com.andy.tickets.domain.requests.UpdateEventRequest;
 import com.andy.tickets.domain.requests.UpdateTicketTypeRequest;
@@ -133,5 +134,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public void deleteEventForOrganizer(UUID organizerId, UUID id) {
         getEventForOrganizer(organizerId, id).ifPresent(eventRepository::delete);
+    }
+
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable) {
+        return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 }

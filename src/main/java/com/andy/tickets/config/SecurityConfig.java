@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
 
                         authorize
-                                .requestMatchers(HttpMethod.GET, "/api/v1/published-events").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/published-events/**").permitAll()
                                 // Catch all rule aka every request will be authenticated by default
                                 .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)

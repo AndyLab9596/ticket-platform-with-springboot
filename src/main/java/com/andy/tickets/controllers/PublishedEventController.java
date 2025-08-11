@@ -1,6 +1,7 @@
 package com.andy.tickets.controllers;
 
 import com.andy.tickets.domain.dtos.ListPublishedEventResponseDto;
+import com.andy.tickets.domain.entities.Event;
 import com.andy.tickets.mappers.EventMapper;
 import com.andy.tickets.services.EventService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/api/v1/published-events")
@@ -19,11 +21,17 @@ public class PublishedEventController {
     private final EventMapper eventMapper;
 
     @GetMapping
-    public ResponseEntity<Page<ListPublishedEventResponseDto>> listPublishedEvent(Pageable pageable) {
-        return ResponseEntity.ok(
-                eventService
-                        .listPublishedEvents(pageable)
-                        .map(eventMapper::toListPublishedEventResponseDto)
-        );
+    public ResponseEntity<Page<ListPublishedEventResponseDto>> listPublishedEvent(
+            @RequestParam(required = false) String q,
+            Pageable pageable
+    ) {
+        Page<Event> events;
+        if (q != null && !q.trim().isEmpty()) {
+            events = eventService.searchPublishedEvents(q, pageable);
+        } else {
+            events = eventService.listPublishedEvents(pageable);
+        }
+
+        return ResponseEntity.ok(events.map(eventMapper::toListPublishedEventResponseDto));
     }
 }
